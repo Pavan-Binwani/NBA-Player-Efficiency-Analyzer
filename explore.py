@@ -77,3 +77,14 @@ overlap_percent = (overlap / len(top_PPG)) * 100
 print(overlap)
 print(overlap_percent)
 print(top_PPG[overlap_check]["Player"])
+
+# Scoring Volume & Efficiency Comparison
+print(top_PPG["TS"].mean())
+print(eligible["TS"].mean())
+
+r = eligible["PTS"].corr(eligible["TS"])
+print(r)
+
+print(eligible.sort_values("TS", ascending=False)[["Player", "G", "MP", "PTS", "FGA", "TS"]].head(5))
+print(top_TS["FGA"].mean())
+print(eligible["FGA"].mean())
