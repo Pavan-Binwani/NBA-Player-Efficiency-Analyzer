@@ -19,6 +19,7 @@
 
 # Coding Starts
 import pandas as pd
+import matplotlib.pyplot as plt
 
 # Initial Data
 df = pd.read_csv("data/nba_per_game.csv")
@@ -88,3 +89,11 @@ print(r)
 print(eligible.sort_values("TS", ascending=False)[["Player", "G", "MP", "PTS", "FGA", "TS"]].head(5))
 print(top_TS["FGA"].mean())
 print(eligible["FGA"].mean())
+
+# Starting the Plot
+plt.figure("NBA Scoring vs Efficiency")
+plt.scatter(eligible["PTS"], eligible["TS"]*100)
+plt.xlabel("Points Per Game")
+plt.ylabel("True Shooting Percentage (%)")
+plt.title("PPG vs TS% Scatter Plot")
+plt.show()
