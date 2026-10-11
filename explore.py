@@ -106,6 +106,7 @@ labeled = eligible[eligible["Player"].isin(names)]
 for index, row in labeled.iterrows():
     plt.annotate(row["Player"], (row["PTS"], row["TS"]*100), fontsize=8, xytext=(3,3), textcoords="offset points")
 
+plt.savefig("charts/scatter.png", dpi=150, bbox_inches="tight")
 plt.show()
 
 # Select Player Comparison
@@ -117,6 +118,7 @@ plt.axhline(eligible["TS"].mean()*100, linestyle="--")
 plt.ylabel("True Shooting Percentage (%)")
 plt.title("PPG vs TS% Bar Chart")
 
+plt.savefig("charts/selected_players.png", dpi=150, bbox_inches="tight")
 plt.show()
 
 # Interpretation:
