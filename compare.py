@@ -1,4 +1,5 @@
 from data_loader import load_eligible
+import pandas as pd
 import unicodedata
 
 eligible = load_eligible()
@@ -20,7 +21,25 @@ def parse_names(text):
             cleaned.append(player.strip())
     return cleaned
 
-
-print(parse_names("Jokic, Luka Doncic ,  Shai"))
-print(parse_names("Jokic,,  ,Tatum,"))
-print(parse_names(""))
+def lookup_names(names, df):
+    found = []
+    found_names = []
+    not_found = []
+    for name in names:
+        result = find_player(name, df)
+        if result is None:
+            if name not in not_found:
+                not_found.append(name)
+        else:
+            player_name = result["Player"].iloc[0]
+            if player_name not in found_names:
+                found.append(result)
+                found_names.append(player_name)
+    if not found:
+        return None, not_found
+    combined = pd.concat(found)
+    return combined, not_found
+        
+found, missing = lookup_names(parse_names("zzz, qqq"), eligible)
+print(found)
+print(missing)
