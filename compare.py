@@ -13,6 +13,14 @@ def find_player(name, df):
         return None
     return result
 
-print(find_player("luka doncic", eligible[["Player", "Team", "PTS", "TS"]]))
-print(find_player("  NIKOLA JOKIC ", eligible[["Player", "Team", "PTS", "TS"]]))
-print(find_player("not a player", eligible))
+def parse_names(text):
+    cleaned = []
+    for player in text.split(","):
+        if player.strip():
+            cleaned.append(player.strip())
+    return cleaned
+
+
+print(parse_names("Jokic, Luka Doncic ,  Shai"))
+print(parse_names("Jokic,,  ,Tatum,"))
+print(parse_names(""))
