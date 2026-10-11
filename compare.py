@@ -57,7 +57,7 @@ def get_players(df):
                     print("None of those players were found. Please try again.")
                 elif len(names_missing) > 0:
                     print(f"The following names were not found: {', '.join(names_missing)}") 
-                elif len(names_found) < MIN_PLAYERS:
+                if len(names_found) < MIN_PLAYERS:
                     print(f"You need to compare a minimum of {MIN_PLAYERS} players. Try again.")
                 elif len(names_found) > MAX_PLAYERS:
                     print(f"You cannot compare more than {MAX_PLAYERS} players. Try again.")
