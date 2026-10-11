@@ -105,3 +105,14 @@ for index, row in labeled.iterrows():
     plt.annotate(row["Player"], (row["PTS"], row["TS"]*100), fontsize=8, xytext=(3,3), textcoords="offset points")
 
 plt.show()
+
+# Select Player Comparison
+chosen = eligible[eligible["Player"].isin(names)]
+
+plt.figure("Select Players: Efficiency", figsize=(15,6))
+plt.bar(chosen["Player"], chosen["TS"]*100)
+plt.axhline(eligible["TS"].mean()*100, linestyle="--")
+plt.ylabel("True Shooting Percentage (%)")
+plt.title("PPG vs TS% Bar Chart")
+
+plt.show()
