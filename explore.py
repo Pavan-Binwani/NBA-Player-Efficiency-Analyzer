@@ -52,3 +52,28 @@ print(eligible[cols].isna().sum())
 eligible["TS"] = eligible["PTS"] / (2 * (eligible["FGA"] + 0.44 * eligible["FTA"]))
 print(eligible[["Player", "PTS", "FGA", "FTA", "TS"]].head())
 print(eligible["TS"].describe())
+
+# Finding Top 10% of PPG & TS%
+PPG_cutoff = eligible["PTS"].quantile(0.90)
+print(PPG_cutoff)
+top_PPG_mask = (eligible["PTS"] >= PPG_cutoff)
+
+TS_cutoff = eligible["TS"].quantile(0.90)
+print(TS_cutoff)
+top_TS_mask = (eligible["TS"] >= TS_cutoff)
+
+top_PPG = eligible[top_PPG_mask]
+top_TS = eligible[top_TS_mask]
+
+# Testing Mask
+print(top_PPG.shape)
+print(top_TS.shape)
+
+# Checking for Overlap
+overlap_check = top_PPG["Player"].isin(top_TS["Player"])
+overlap = overlap_check.sum()
+overlap_percent = (overlap / len(top_PPG)) * 100
+
+print(overlap)
+print(overlap_percent)
+print(top_PPG[overlap_check]["Player"])
