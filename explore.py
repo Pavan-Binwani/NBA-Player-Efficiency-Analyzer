@@ -96,4 +96,12 @@ plt.scatter(eligible["PTS"], eligible["TS"]*100)
 plt.xlabel("Points Per Game")
 plt.ylabel("True Shooting Percentage (%)")
 plt.title("PPG vs TS% Scatter Plot")
+
+# Labeling Players
+names = ["Luka Dončić", "LeBron James", "Shai Gilgeous-Alexander", "Stephen Curry", 
+         "Cooper Flagg", "Ryan Kalkbrenner", "Goga Bitadze", "Jaxon Hayes"]
+labeled = eligible[eligible["Player"].isin(names)]
+for index, row in labeled.iterrows():
+    plt.annotate(row["Player"], (row["PTS"], row["TS"]*100), fontsize=8, xytext=(3,3), textcoords="offset points")
+
 plt.show()
