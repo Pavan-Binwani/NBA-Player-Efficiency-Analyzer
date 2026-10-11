@@ -70,5 +70,14 @@ def get_players(df):
                 else:
                     return names_found
 
-players = get_players(eligible)
-print(players)
+def show_comparison(players):
+    players_new = players.copy()
+    players_new["TS"] = round(players_new["TS"] * 100, 1)
+    print(players_new[["Player", "Team", "G", "MP", "PTS", "FGA", "TS"]].to_string(index=False))
+
+# Putting Everything Together
+while True:
+    players = get_players(eligible)
+    if players is None:
+        break
+    show_comparison(players)
