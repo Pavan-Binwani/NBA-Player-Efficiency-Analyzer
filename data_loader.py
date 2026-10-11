@@ -7,4 +7,5 @@ def load_eligible():
     df_no_dupe = df.drop_duplicates(subset="Rk")
 
     eligible = df_no_dupe[mask]
+    eligible["TS"] = eligible["PTS"] / (2 * (eligible["FGA"] + 0.44 * eligible["FTA"]))
     return eligible
