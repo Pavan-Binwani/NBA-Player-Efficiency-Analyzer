@@ -85,6 +85,8 @@ print(eligible["TS"].mean())
 
 r = eligible["PTS"].corr(eligible["TS"])
 print(r)
+r_squared = r ** 2
+print(r_squared)
 
 print(eligible.sort_values("TS", ascending=False)[["Player", "G", "MP", "PTS", "FGA", "TS"]].head(5))
 print(top_TS["FGA"].mean())
@@ -116,3 +118,21 @@ plt.ylabel("True Shooting Percentage (%)")
 plt.title("PPG vs TS% Bar Chart")
 
 plt.show()
+
+# Interpretation:
+# The correlation between PPG and TS% was r = 0.26 which is a weak positive relationship.
+# This means that the initial hypothesis I created was off by a decent margin and that 
+# there is a weak positive correlation between a player's PPG and their TS% 
+# during the 2025-2026 NBA Regular Season.
+# The r² of 0.07 shows that a large amount of variance in TS% is explained by factors outside of just PPG.
+# My hypothesis was quite far off from the actual results. I predicted an r value 
+# between 0.5 and 0.7 which would have been a medium to strong positive correlation. 
+# The results were instead a weak positive correlation. 
+# I additionally predicted at least a 25% overlap. In reality, the overlap between the 
+# top 10% of ppg and top 10% of TS% was just 14.6%, much lower than what I initially expected.
+# Some possible limitations that could be making the relationship between PPG and TS% look the
+# way it is include the fact that this data only included one season, so this result may not hold for other seasons
+# Another possible limitation would be that I used a rather lenient filter. This allowed many players
+# with an extremely low volume of shot attempts to be included in the data, potentially skewing
+# the data as some of these extremely low volume players happened to have hyper efficient seasons.
+# This study cannot tell us that averaging more PPG causes a player to have a higher TS% because this was purely a correlational study.
